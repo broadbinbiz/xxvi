@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import VaultBackground from "./components/VaultBackground";
 
 const luxuryEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -92,6 +93,7 @@ export default function Home() {
 
   return (
     <main className="xxvi-page">
+      <VaultBackground />
       <section className="hero" aria-labelledby="hero-title">
         <div className="heroAtmosphere" aria-hidden="true">
           <span className="diamondParticle particleOne" />

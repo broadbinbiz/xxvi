@@ -56,6 +56,7 @@ a {
 }
 
 .xxvi-page {
+  position: relative;
   min-height: 100vh;
   overflow: hidden;
   background:
@@ -64,6 +65,88 @@ a {
     linear-gradient(rgba(255, 255, 255, 0.032) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
   background-size: 88px 88px;
+  isolation: isolate;
+}
+
+.xxvi-page > section,
+.xxvi-page > footer {
+  position: relative;
+  z-index: 1;
+}
+
+.vaultBackground {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 68% 34%, rgba(226, 231, 235, 0.08), transparent 27rem),
+    linear-gradient(180deg, #020303 0%, #050607 46%, #020303 100%);
+  pointer-events: none;
+}
+
+.vaultBackgroundFallback {
+  position: absolute;
+  inset: -8%;
+  background:
+    radial-gradient(ellipse at 55% 42%, rgba(231, 235, 238, 0.14), transparent 28rem),
+    linear-gradient(90deg, rgba(2, 3, 3, 0.92), rgba(2, 3, 3, 0.26) 48%, rgba(2, 3, 3, 0.92)),
+    url("/xxvi-vault-bg.jpg") center 43% / min(58vw, 620px) auto no-repeat;
+  opacity: 0.42;
+  transform: translate3d(0, 0, 0);
+}
+
+.vaultBackgroundCanvas {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0.78;
+}
+
+.vaultBackgroundGrade {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 34%, transparent 0 18rem, rgba(2, 3, 3, 0.28) 34rem),
+    linear-gradient(180deg, rgba(2, 3, 3, 0.64), rgba(2, 3, 3, 0.28) 36%, rgba(2, 3, 3, 0.84)),
+    linear-gradient(90deg, rgba(2, 3, 3, 0.82), transparent 46%, rgba(2, 3, 3, 0.76));
+}
+
+.vaultBackgroundGlint {
+  position: absolute;
+  display: block;
+  width: clamp(90px, 11vw, 150px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+  opacity: 0;
+  transform: rotate(-19deg);
+  animation: vaultBackgroundGlint 15s ease-in-out infinite;
+}
+
+.vaultBackgroundGlint::after {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  content: "";
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.52);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.18);
+  transform: translateX(-50%);
+}
+
+.vaultBackgroundGlintOne {
+  top: 31%;
+  right: 16%;
+}
+
+.vaultBackgroundGlintTwo {
+  right: 42%;
+  bottom: 18%;
+  width: clamp(72px, 9vw, 118px);
+  animation-delay: -7s;
 }
 
 .hero {
@@ -1487,6 +1570,24 @@ h3 {
   }
 }
 
+@keyframes vaultBackgroundGlint {
+  0%,
+  68%,
+  100% {
+    opacity: 0;
+    transform: translate3d(-18px, 12px, 0) rotate(-19deg) scaleX(0.72);
+  }
+
+  74% {
+    opacity: 0.24;
+  }
+
+  82% {
+    opacity: 0;
+    transform: translate3d(34px, -10px, 0) rotate(-19deg) scaleX(1);
+  }
+}
+
 @keyframes roomFloat {
   0%,
   100% {
@@ -1547,6 +1648,27 @@ h3 {
 }
 
 @media (max-width: 760px) {
+  .vaultBackgroundFallback {
+    background:
+      radial-gradient(ellipse at 52% 34%, rgba(231, 235, 238, 0.12), transparent 22rem),
+      linear-gradient(90deg, rgba(2, 3, 3, 0.88), rgba(2, 3, 3, 0.2) 50%, rgba(2, 3, 3, 0.88)),
+      url("/xxvi-vault-bg.jpg") center 36% / min(92vw, 470px) auto no-repeat;
+    opacity: 0.34;
+  }
+
+  .vaultBackgroundCanvas {
+    opacity: 0.66;
+  }
+
+  .vaultBackgroundGlintOne {
+    right: 4%;
+  }
+
+  .vaultBackgroundGlintTwo {
+    right: 34%;
+    bottom: 22%;
+  }
+
   .hero {
     padding: 22px 20px 56px;
   }
